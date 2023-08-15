@@ -1,0 +1,33 @@
+<div
+  class="p-4 shadow-zinc-700 border-0 border-t-2 border-zinc-800 lg:border-2 shadow-2xl m-auto lg:max-w-3xl lg:rounded-3xl lg:mb-2 transition-all"
+>
+  <div class="flex items-center max-w-3xl m-auto">
+    <i class="text-sky-600 not-italic select-none ml-2 animate-pulse">$</i>
+    <input
+      #newTask
+      type="text"
+      placeholder="New task"
+      (keydown.enter)="enterHandler(newTask)"
+      class="min-w-0 border-zinc-600 flex-1 px-2 py-2 border-0 border-b mx-4 bg-transparent placeholder-zinc-600 text-zinc-200 focus:border-zinc-400 focus:ring-0 transition-all hover:translate-y-[-2px]"
+    />
+    <menu type="toolbar" class="list-none flex ml-auto">
+      <li>
+        <button
+          type="button"
+          class="p-1 font-black text-emerald-400 hover:opacity-60 hover:translate-y-[-2px] transition-all focus:ring-2 focus:ring-emerald-200 rounded-lg"
+        >
+          [+]
+        </button>
+      </li>
+      <li>
+        <button
+          type="button"
+          (click)="addTask(newTask.value)"
+          class="ml-2 p-1 font-black text-red-400 hover:opacity-60 hover:translate-y-[-2px] transition-all focus:ring-2 focus:ring-red-200 rounded-lg"
+        >
+          [-]
+        </button>
+      </li>
+    </menu>
+  </div>
+</div>

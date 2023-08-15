@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-todo-22d22": {
+      "hosting": {
+        "web": [
+          "angular-todo-22d22"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-todo-22d22"
+  }
+}
