@@ -1,5 +1,5 @@
 export interface Task {
-  id: TaskId;
+  _id: string;
   content: string;
   done: boolean;
 }
@@ -12,5 +12,3 @@ export interface UpdateTask {
   content?: string;
   done?: boolean;
 }
-
-export type TaskId = `${string}-${string}-${string}-${string}`;

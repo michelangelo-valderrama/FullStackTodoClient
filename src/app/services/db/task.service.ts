@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TaskId, CreateTask, UpdateTask, Task } from '../classes/task.class';
+import { CreateTask, UpdateTask, Task } from '../../classes/task.class';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
@@ -11,13 +11,13 @@ export class TaskService {
   private readonly httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  private tasksMessage = new Subject<Task[]>();
-  tasks$ = this.tasksMessage.asObservable();
+  private taskMessage = new Subject<Task>();
+  tasks$ = this.taskMessage.asObservable();
 
   constructor(private readonly http: HttpClient) {}
 
-  sendTasks(tasks: Task[]) {
-    this.tasksMessage.next(tasks);
+  sendTask(task: Task) {
+    this.taskMessage.next(task);
   }
 
   getTasks() {
@@ -25,15 +25,15 @@ export class TaskService {
   }
 
   createTask(createTask: CreateTask) {
-    return this.http.post<Task[]>(this.apiUrl, createTask, this.httpOptions);
+    return this.http.post<Task>(this.apiUrl, createTask, this.httpOptions);
   }
 
-  deleteTask(id: TaskId) {
-    return this.http.delete<Task[]>(`${this.apiUrl}/${id}`, this.httpOptions);
+  deleteTask(id: string) {
+    return this.http.delete(`${this.apiUrl}/${id}`, this.httpOptions);
   }
 
-  updateTask(id: TaskId, updateTask: UpdateTask) {
-    return this.http.patch<Task[]>(
+  updateTask(id: string, updateTask: UpdateTask) {
+    return this.http.patch<Task>(
       `${this.apiUrl}/${id}`,
       updateTask,
       this.httpOptions

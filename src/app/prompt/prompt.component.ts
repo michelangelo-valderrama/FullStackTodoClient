@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TaskService } from '../services/task.service';
+import { TaskService } from '../services/db/task.service';
 import { CreateTask } from '../classes/task.class';
 
 @Component({
@@ -10,16 +10,13 @@ import { CreateTask } from '../classes/task.class';
 export class PromptComponent {
   constructor(private taskService: TaskService) {}
 
-  enterHandler(element: HTMLInputElement) {
-    this.addTask(element.value);
+  addTask(element: HTMLInputElement) {
+    const content = element.value;
     element.value = '';
-  }
-
-  addTask(content: string) {
     if (!content.trim()) return;
     const createTask: CreateTask = { content };
     this.taskService
       .createTask(createTask)
-      .subscribe((res) => this.taskService.sendTasks(res));
+      .subscribe((task) => this.taskService.sendTask(task));
   }
 }

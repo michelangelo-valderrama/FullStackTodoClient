@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../services/task.service';
-import { Task, TaskId, UpdateTask } from '../classes/task.class';
+import { TaskService } from '../services/db/task.service';
+import { Task, UpdateTask } from '../classes/task.class';
 
 @Component({
   selector: 'x-tasks',
@@ -13,26 +13,28 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this.getTasks();
-    this.taskService.tasks$.subscribe((tasks) => {
-      this.tasks = tasks;
+    this.taskService.tasks$.subscribe((task) => {
+      this.tasks.push(task);
     });
   }
 
   getTasks() {
-    this.taskService.getTasks().subscribe((res) => {
-      this.tasks = res;
+    this.taskService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks;
     });
   }
 
-  deleteTask(id: TaskId) {
-    this.taskService.deleteTask(id).subscribe((res) => {
-      this.tasks = res;
+  deleteTask(id: string) {
+    this.taskService.deleteTask(id).subscribe(() => {
+      this.tasks = this.tasks.filter((t) => t._id !== id);
     });
   }
 
-  updateTask(id: TaskId, updateTask: UpdateTask) {
-    this.taskService
-      .updateTask(id, updateTask)
-      .subscribe((res) => (this.tasks = res));
+  updateTask(id: string, updateTask: UpdateTask) {
+    this.taskService.updateTask(id, updateTask).subscribe(() => {
+      const index = this.tasks.findIndex((t) => t._id === id);
+      const newTask = Object.assign(this.tasks[index], updateTask);
+      this.tasks[index] = newTask;
+    });
   }
 }
