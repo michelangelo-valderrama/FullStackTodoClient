@@ -11,10 +11,10 @@ export class PromptComponent {
   constructor(private taskService: TaskService) {}
 
   addTask(element: HTMLInputElement) {
-    const content = element.value;
+    const title = element.value;
     element.value = '';
-    if (!content.trim()) return;
-    const createTask: CreateTask = { content };
+    if (!title.trim()) return;
+    const createTask: CreateTask = { title };
     this.taskService
       .createTask(createTask)
       .subscribe((task) => this.taskService.sendTask(task));

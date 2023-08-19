@@ -24,13 +24,13 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  deleteTask(id: string) {
+  deleteTask(id: number) {
     this.taskService.deleteTask(id).subscribe(() => {
       this.tasks = this.tasks.filter((t) => t._id !== id);
     });
   }
 
-  updateTask(id: string, updateTask: UpdateTask) {
+  updateTask(id: number, updateTask: UpdateTask) {
     this.taskService.updateTask(id, updateTask).subscribe(() => {
       const index = this.tasks.findIndex((t) => t._id === id);
       const newTask = Object.assign(this.tasks[index], updateTask);

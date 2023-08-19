@@ -1,14 +1,14 @@
 export interface Task {
-  _id: string;
-  content: string;
+  _id: number;
+  title: string;
   done: boolean;
 }
 
 export interface CreateTask {
-  content: string;
+  title: string;
 }
 
 export interface UpdateTask {
-  content?: string;
+  title?: string;
   done?: boolean;
 }
