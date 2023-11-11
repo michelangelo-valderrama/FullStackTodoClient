@@ -17,6 +17,6 @@ export class PromptComponent {
     const createTask: CreateTask = { title };
     this.taskService
       .createTask(createTask)
-      .subscribe((task) => this.taskService.sendTask(task));
+      .subscribe(() => window.location.reload());
   }
 }

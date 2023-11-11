@@ -1,7 +1,7 @@
 export interface Task {
   _id: number;
   title: string;
-  done: boolean;
+  done?: boolean;
 }
 
 export interface CreateTask {

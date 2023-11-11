@@ -13,20 +13,11 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this.getTasks();
-    this.taskService.tasks$.subscribe((task) => {
-      this.tasks.push(task);
-    });
   }
 
   getTasks() {
     this.taskService.getTasks().subscribe((tasks) => {
       this.tasks = tasks;
-    });
-  }
-
-  deleteTask(id: number) {
-    this.taskService.deleteTask(id).subscribe(() => {
-      this.tasks = this.tasks.filter((t) => t._id !== id);
     });
   }
 
@@ -36,5 +27,9 @@ export class TasksComponent implements OnInit {
       const newTask = Object.assign(this.tasks[index], updateTask);
       this.tasks[index] = newTask;
     });
+  }
+
+  deleteTask(id: number) {
+    this.taskService.deleteTask(id).subscribe(() => window.location.reload());
   }
 }

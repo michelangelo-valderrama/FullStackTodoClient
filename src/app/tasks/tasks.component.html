@@ -1,39 +1,36 @@
-<div class="mt-20"></div>
-<li
-  id="toast-default"
-  class="flex items-stretch p-4 py-1.5 max-w-2xl m-auto"
-  *ngFor="let task of tasks; let i = index"
->
-  <i class="w-5 text-right ml-1 not-italic select-none text-zinc-600">{{
-    i + 1
-  }}</i>
-  <div class="font-normal">
-    <p
-      class="ml-8 inline-block text-zinc-200"
-      [ngClass]="task.done ? 'line-through italic opacity-50' : ''"
-    >
-      {{ task.title }}
-    </p>
-  </div>
-  <menu class="ml-auto flex">
-    <li>
+<article class="my-20">
+  <li
+    id="toast-default"
+    class="flex p-4 py-1.5 max-w-2xl m-auto"
+    *ngFor="let task of tasks; let i = index"
+  >
+    <i class="text-right ml-1 not-italic select-none text-zinc-600">{{
+      i + 1
+    }}</i>
+    <div class="font-normal">
+      <p
+        class="ml-8 inline-block text-zinc-200"
+        [ngClass]="task.done ? 'line-through italic opacity-60' : ''"
+      >
+        {{ task.title }}
+      </p>
+    </div>
+    <div class="ml-auto flex">
       <button
         (click)="updateTask(task._id, { done: !task.done })"
         type="button"
-        class="rounded-lg font-black focus:ring-2 focus:ring-emerald-200 p-1 text-zinc-600 hover:text-emerald-400 hover:translate-y-[-2px] active:scale-95 active:opacity-60 transition-all before:content-['[o]'] hover:before:content-[''] hover:after:content-['[·]']"
+        class="rounded-lg font-black focus:ring-2 focus:ring-sky-200 p-1 text-zinc-600 hover:text-sky-400 hover:translate-y-[-2px] active:scale-95 active:opacity-60 transition-all before:content-['[o]'] hover:before:content-[''] hover:after:content-['[·]']"
       >
         <span class="sr-only">Done</span>
       </button>
-    </li>
-    <li>
       <button
-        type="button"
         (click)="deleteTask(task._id)"
-        class="ml-2 rounded-lg font-black focus:ring-2 focus:ring-red-200 p-1 text-zinc-600 hover:text-red-400 hover:translate-y-[-2px] active:scale-95 active:opacity-60 transition-all before:content-['[x]'] hover:before:content-[''] hover:after:content-['[*]']"
+        type="button"
+        class="rounded-lg font-black focus:ring-2 focus:ring-sky-200 p-1 text-zinc-600 hover:text-sky-400 hover:translate-y-[-2px] active:scale-95 active:opacity-60 transition-all before:content-['[x]'] hover:before:content-[''] hover:after:content-['[*]']"
       >
-        <span class="sr-only">Delete</span>
+        <span class="sr-only">Remove</span>
       </button>
-    </li>
-  </menu>
-</li>
-<div class="mb-4"></div>
+    </div>
+    <div class="mb-4"></div>
+  </li>
+</article>
